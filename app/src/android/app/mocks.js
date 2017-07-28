@@ -24,182 +24,15 @@ class SampleApp extends Component {
 	constructor(props) {
 		super(props);	
 	}
- 
+
 	render() {
 		return (
 			<AppContainer />
 		);
 	}
 }
-//#009698
-class ViewPager extends Component {
-	constructor(props) {
-		super(props);	
-	}
- 
-	render() {
-		return (
-			<View style={{flex: 1}}>
-				<View style={{flex: 1, backgroundColor: 'white'}}>
-					<Text style={{color: 'black'}}>
-						Header
-					</Text>
-				</View>
-				
-				<View style={{flex: 5, backgroundColor: 'white'}}>		
-					<ViewPagerAndroid 
-						style={{flex: 1}}
-						initialPage={0}>
-
-						<View style={{backgroundColor: 'blue'}}>
-							<Text style={{color: 'white'}}>
-								First page
-							</Text>
-						</View>      
-						<View style={{backgroundColor: 'green'}}>
-							<Text style={{color: 'white'}}>
-								Second page
-							</Text>
-						</View>			
-						<View style={{backgroundColor: 'red'}}>
-							<Text style={{color: 'white'}}>
-								Third page
-							</Text>
-						</View>
-
-					</ViewPagerAndroid>
-	 
-				</View>
-			</View>
-		);
-	}
-}
-
-class DrawerLayout extends Component {
-	constructor(props) {
-		super(props);	
-	}
-	
-    componentDidMount() {
-    }
-		
-	onBack() {
-		this.props.navigator.pop();
-	}	
-	
-    onMenu() {
-        this.refs['DRAWER_REF'].openDrawer();
-    }
-	
-    onLogOut() {
-        this.refs['DRAWER_REF'].closeDrawer();
-    }
-		
-	_handlePress1() {
-		this.props.navigator.pop();
-	}	
-	
-	_handlePress() {
-		//this.props.navigator.pop();
-		this.props.navigator.push(this.props.routes[2]);
-	}
-	
-	render() {
-		var navigationView = (
-			<View style={{flex: 1, backgroundColor: '#fff'}}>
-				<Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>
-					DrawerLayoutAndroid
-				</Text>
-				
-				<TouchableHighlight
-					onPress={() => this.onLogOut()}
-					style={styles.button}>
-					<Text style={styles.buttonText}>
-						Log out
-					</Text>
-				</TouchableHighlight>				
-				
-				<TouchableHighlight
-					onPress={() => this.onBack()}
-					style={styles.button}>
-					<Text style={styles.buttonText}>
-						Back
-					</Text>
-				</TouchableHighlight>
-			</View>
-		)
-		
-		return (
-			<DrawerLayoutAndroid
-				ref={'DRAWER_REF'}
-				drawerWidth={300}
-				drawerPosition={DrawerLayoutAndroid.positions.Left}
-				renderNavigationView={() => navigationView}>
-				
-				<View style={[styles.container, {backgroundColor: 'purple'}]}>
-					<Text style={styles.welcome}>This is page two!</Text>
-
-					<TouchableOpacity onPress={this.onMenu.bind(this)}>
-						<View style={{paddingVertical: 10, paddingHorizontal: 20, backgroundColor: 'black'}}>
-							<Text style={styles.welcome}>Go to Menu</Text>
-						</View>
-					</TouchableOpacity>
-
-					<View style={{margin: 10}}></View>	
-
-					<TouchableOpacity onPress={this._handlePress1.bind(this)}>
-						<View style={{paddingVertical: 20, paddingHorizontal: 20, backgroundColor: 'black'}}>
-							<Text style={styles.welcome}>Go back</Text>
-						</View>
-					</TouchableOpacity>	
-				</View>				
- 
-			</DrawerLayoutAndroid>
-		);
-	}
-}
 
 class AppContainer extends Component {
-	constructor(props) {
-		super(props);
-	}
-	//<ScrollableTabView>
-	//</ScrollableTabView>
-	render() {
-		return (
-			<PageOne tabLabel="PageOne" />
-		);
-	}
-}
-
-class PlayTrack extends Component {
-    constructor(props) {
-        super(props);
-		
-		this.state = {
-			html: 'http://video.itunes.apple.com/apple-assets-us-std-000001/Video5/v4/1c/6e/85/1c6e85ed-e4a6-f9be-b7bd-ceaa0faf3077/mzvf_7073124460975954476.640x476.h264lc.U.p.m4v'
-		};
-		
-		if (props.data) {
-			this.state = {
-				url: props.data.url,
-				html: 'https://www.facebook.com/wikrcom/videos/1118835278260392/'
-			}
-		}
-    }
-
-    render() {
-        return (
-            <WebView
-                source={{uri: this.state.html}}
-				mediaPlaybackRequiresUserAction={false}
-				style={{height: 200, width: 350}}
-            />
-        )
-    }
-}
-
-class PageOne extends Component {
 	constructor(props) {
 		super(props);
 		this.routes = [
@@ -211,9 +44,9 @@ class PageOne extends Component {
 		  
 	renderScene(route, navigator) {
 		switch (route.index) {
-			case 0: return <PageFirst routes={this.routes} navigator={navigator} />
+			case 0: return <PageOne routes={this.routes} navigator={navigator} />
 					break;			
-			case 1: return <DrawerLayout routes={this.routes} navigator={navigator} />
+			case 1: return <PageTwo routes={this.routes} navigator={navigator} />
 					break;			
 			case 2: return <PageThree routes={this.routes} navigator={navigator} />
 					break;
@@ -246,7 +79,7 @@ VerticalDownSwipeJump
 	}
 }
 
-class PageFirst extends Component {
+class PageOne extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -428,6 +261,21 @@ class PageTwo extends Component {
 		super(props);	
 	}
 	
+    componentDidMount() {
+    }
+		
+	onBack() {
+		this.props.navigator.pop();
+	}	
+	
+    onMenu() {
+        this.refs['DRAWER_REF'].openDrawer();
+    }
+	
+    onLogOut() {
+        this.refs['DRAWER_REF'].closeDrawer();
+    }
+		
 	_handlePress1() {
 		this.props.navigator.pop();
 	}	
@@ -436,28 +284,60 @@ class PageTwo extends Component {
 		//this.props.navigator.pop();
 		this.props.navigator.push(this.props.routes[2]);
 	}
-		
-  render() {
-    return (
-      <View style={[styles.container, {backgroundColor: 'purple'}]}>
-        <Text style={styles.welcome}>This is page two!</Text>
-		
-        <TouchableOpacity onPress={this._handlePress.bind(this)}>
-          <View style={{paddingVertical: 10, paddingHorizontal: 20, backgroundColor: 'black'}}>
-            <Text style={styles.welcome}>Go to page three</Text>
-          </View>
-        </TouchableOpacity>
-		
-		<View style={{margin: 10}}></View>	
-		
-		<TouchableOpacity onPress={this._handlePress1.bind(this)}>
-			<View style={{paddingVertical: 20, paddingHorizontal: 20, backgroundColor: 'black'}}>
-				<Text style={styles.welcome}>Go back</Text>
+	
+	render() {
+		var navigationView = (
+			<View style={{flex: 1, backgroundColor: '#fff'}}>
+				<Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>
+					DrawerLayoutAndroid
+				</Text>
+				
+				<TouchableHighlight
+					onPress={() => this.onLogOut()}
+					style={styles.button}>
+					<Text style={styles.buttonText}>
+						Log out
+					</Text>
+				</TouchableHighlight>				
+				
+				<TouchableHighlight
+					onPress={() => this.onBack()}
+					style={styles.button}>
+					<Text style={styles.buttonText}>
+						Back
+					</Text>
+				</TouchableHighlight>
 			</View>
-		</TouchableOpacity>	
-       </View>
-    )
-  }
+		)
+		
+		return (
+			<DrawerLayoutAndroid
+				ref={'DRAWER_REF'}
+				drawerWidth={200}
+				drawerPosition={DrawerLayoutAndroid.positions.Left}
+				renderNavigationView={() => navigationView}>
+				
+				<View style={[styles.container, {backgroundColor: 'purple'}]}>
+					<Text style={styles.welcome}>This is page two!</Text>
+
+					<TouchableOpacity onPress={this.onMenu.bind(this)}>
+						<View style={{paddingVertical: 10, paddingHorizontal: 20, backgroundColor: 'black'}}>
+							<Text style={styles.welcome}>Go to Menu</Text>
+						</View>
+					</TouchableOpacity>
+
+					<View style={{margin: 10}}></View>	
+
+					<TouchableOpacity onPress={this._handlePress1.bind(this)}>
+						<View style={{paddingVertical: 20, paddingHorizontal: 20, backgroundColor: 'black'}}>
+							<Text style={styles.welcome}>Go back</Text>
+						</View>
+					</TouchableOpacity>	
+				</View>				
+ 
+			</DrawerLayoutAndroid>
+		);
+	}
 }
 
 class PageThree extends Component {

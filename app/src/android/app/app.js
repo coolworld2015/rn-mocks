@@ -7,11 +7,7 @@ import {
 
 console.disableYellowBox = true;
 
-import Login from './login';
-import AppContainer from './appContainer';
-
-//import SampleApp from './navigator';
-import SampleApp from './mocks';
+import Mocks from './mocks';
 
 class App extends Component {
     constructor(props) {
@@ -22,45 +18,13 @@ class App extends Component {
 				this.props.navigator.pop();
 			}
 			return true;
-		});
-		
-        this.state = {
-            isLoggedIn: true
-        };
-
-        window.appConfig = {
-            access_token: '',
-			url: 'http://jwt-base.herokuapp.com/',
-			onLogOut: this.onLogOut.bind(this),
-			users: {
-                refresh: false
-            },
-			phones: {
-                refresh: false
-            }	
-        };		
+		});	
     }
 
     render() {
-        if (this.state.isLoggedIn) {
-            return (
-                <SampleApp />
-            )
-        } else {
-            return (
-                <Login onLogin={this.onLogin.bind(this)}/>
-            )
-        }
-    }
-
-    onLogin() {
-        console.log('onLogin');
-        this.setState({isLoggedIn: true});
-    }
-
-    onLogOut() {
-        console.log('onLogOut');
-        this.setState({isLoggedIn: false});
+		return (
+			<Mocks />
+		)
     }
 }
 
