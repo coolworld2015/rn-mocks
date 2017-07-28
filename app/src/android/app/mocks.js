@@ -20,6 +20,8 @@ import {
 import NavigationExperimental from 'react-native-deprecated-custom-components';
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 
+import {AdMobBanner} from 'react-native-admob';
+
 class SampleApp extends Component {
 	constructor(props) {
 		super(props);	
@@ -142,7 +144,6 @@ class PageOne extends Component {
 				drawerPosition={DrawerLayoutAndroid.positions.Left}
 				renderNavigationView={() => navigationView}>
 				
-				
 				<View style={{backgroundColor: '#009698', paddingBottom: 0, height: 1000}}>
 					<View style={styles.header}>
 						<View>
@@ -176,7 +177,7 @@ class PageOne extends Component {
 					
 					<ScrollView>
 						<Text style={styles.welcome}></Text>
- 	
+						
 						<View style={styles.row}>
 							<TouchableOpacity onPress={this._handlePress2.bind(this)}>
 								<View style={styles.tileLeft}>
@@ -248,8 +249,12 @@ class PageOne extends Component {
 								</View>
 							</TouchableOpacity>			
 						</View>		
+						
+						<View style={styles.row}>
+							<AdMobBanner adUnitID="ca-app-pub-4884500146569199/5596319463"/>
+						</View>
 											
-					</ScrollView>
+					</ScrollView>					
 				</View>			
 			</DrawerLayoutAndroid>		
 		)
