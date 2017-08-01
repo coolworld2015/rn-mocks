@@ -53,3 +53,4 @@ CONFIG -> android/app ->build.gradle /applicationId + versionName
 -------------------------------------------------------------------------------------------------
 NAME -> android\app\src\main\res\values\strings
 -------------------------------------------------------------------------------------------------
+AdMobBanner -> https://github.com/sbugert/react-native-admob
