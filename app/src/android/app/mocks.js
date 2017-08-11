@@ -249,10 +249,6 @@ class PageOne extends Component {
 								</View>
 							</TouchableOpacity>			
 						</View>		
-						
-						<View style={styles.row}>
-							<AdMobBanner adUnitID="ca-app-pub-4884500146569199/5596319463"/>
-						</View>
 											
 					</ScrollView>					
 				</View>			
@@ -260,6 +256,10 @@ class PageOne extends Component {
 		)
 	}
 }
+
+//<View style={styles.row}>
+//<AdMobBanner adUnitID="ca-app-pub-4884500146569199/5596319463"/>
+//</View>
 
 class PageTwo extends Component {
 	constructor(props) {
