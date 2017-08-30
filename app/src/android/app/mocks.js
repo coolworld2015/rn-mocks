@@ -103,14 +103,19 @@ class PageOne extends Component {
     onLogOut() {
         this.refs['DRAWER_REF'].closeDrawer();
     }
-	
+
 	render() {
 		var navigationView = (
-			<View style={{flex: 1, backgroundColor: '#fff'}}>
-				<Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>
+			<View style={{flex: 1, backgroundColor: 'rgba(128,128,128,0.5)'}}>
+				<View style={{position: 'absolute', height: '100%'}}>
+					<Image style={{ flex: 1, width: 250, resizeMode: 'stretch'}}
+						source={require('../../../img/logo.png')}
+					/>
+				</View>
+				<Text style={styles.layoutText}>
 					DrawerLayoutAndroid
 				</Text>
-				
+ 
 				<TouchableHighlight
 					onPress={() => this.onLogOut()}
 					style={styles.button}>
@@ -140,7 +145,7 @@ class PageOne extends Component {
 		return (
 			<DrawerLayoutAndroid
 				ref={'DRAWER_REF'}
-				drawerWidth={200}
+				drawerWidth={250}
 				drawerPosition={DrawerLayoutAndroid.positions.Left}
 				renderNavigationView={() => navigationView}>
 				
@@ -292,8 +297,8 @@ class PageTwo extends Component {
 	
 	render() {
 		var navigationView = (
-			<View style={{flex: 1, backgroundColor: '#fff'}}>
-				<Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>
+			<View style={{flex: 1, backgroundColor: 'rgba(128,128,128,0.5)'}}>
+				<Text style={styles.layoutText}>
 					DrawerLayoutAndroid
 				</Text>
 				
@@ -444,6 +449,13 @@ const styles = StyleSheet.create({
         margin: 14,
         fontWeight: 'bold',
         color: 'white'
+    },    
+	buttonText: {
+        fontSize: 16,
+        textAlign: 'center',
+        margin: 14,
+        fontWeight: 'bold',
+        color: 'white'
     },
     textLarge: {
         fontSize: 20,
@@ -500,7 +512,14 @@ const styles = StyleSheet.create({
 		margin: 5,
 		//marginRight: 15,
 		borderRadius: 15
-	} 
+	},
+	layoutText: {
+		color: 'white', 
+		margin: 10, 
+		fontWeight: 'bold', 
+		fontSize: 15, 
+		textAlign: 'left'
+	}
 });
 
 module.exports = SampleApp;
